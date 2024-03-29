@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "292483748532",
+    "project_id": "bottender-9a87d",
+    "storage_bucket": "bottender-9a87d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292483748532:android:c5539a8e67630f464dfde1",
+        "android_client_info": {
+          "package_name": "com.example.bottender_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcyWNDAcbx2HZD0x8o04qwDA9BukO_P-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
