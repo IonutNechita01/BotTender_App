@@ -16,7 +16,10 @@ class InitScreen extends StatelessWidget {
   }
 
   Future<void> _ititializeApp() async {
-    await store.dispatchAsync(InitDevicesAction());
+    await store.dispatchAndWait(InitDevicesAction());
+    print('Devices initialized');
+    await store.dispatchAndWait(InitCocktailsAction());
+    await store.dispatchAndWait(InitFavoritesCocktailsAction());
     store.dispatch(NavigateAction.pushReplacementNamed(Routes.devicesScreen));
   }
 }

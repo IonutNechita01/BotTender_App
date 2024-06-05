@@ -19,24 +19,42 @@ mixin _$AppState {
   DevicesState get devicesState => throw _privateConstructorUsedError;
   InitState get initState => throw _privateConstructorUsedError;
   HomeState get homeState => throw _privateConstructorUsedError;
+  IngredientState get ingredientState => throw _privateConstructorUsedError;
+  CocktailsState get cocktailsState => throw _privateConstructorUsedError;
+  CocktailState get cocktailState => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            DevicesState devicesState, InitState initState, HomeState homeState)
+            DevicesState devicesState,
+            InitState initState,
+            HomeState homeState,
+            IngredientState ingredientState,
+            CocktailsState cocktailsState,
+            CocktailState cocktailState)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DevicesState devicesState, InitState initState,
-            HomeState homeState)?
+    TResult? Function(
+            DevicesState devicesState,
+            InitState initState,
+            HomeState homeState,
+            IngredientState ingredientState,
+            CocktailsState cocktailsState,
+            CocktailState cocktailState)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DevicesState devicesState, InitState initState,
-            HomeState homeState)?
+    TResult Function(
+            DevicesState devicesState,
+            InitState initState,
+            HomeState homeState,
+            IngredientState ingredientState,
+            CocktailsState cocktailsState,
+            CocktailState cocktailState)?
         initial,
     required TResult orElse(),
   }) =>
@@ -69,11 +87,19 @@ abstract class $AppStateCopyWith<$Res> {
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
   $Res call(
-      {DevicesState devicesState, InitState initState, HomeState homeState});
+      {DevicesState devicesState,
+      InitState initState,
+      HomeState homeState,
+      IngredientState ingredientState,
+      CocktailsState cocktailsState,
+      CocktailState cocktailState});
 
   $DevicesStateCopyWith<$Res> get devicesState;
   $InitStateCopyWith<$Res> get initState;
   $HomeStateCopyWith<$Res> get homeState;
+  $IngredientStateCopyWith<$Res> get ingredientState;
+  $CocktailsStateCopyWith<$Res> get cocktailsState;
+  $CocktailStateCopyWith<$Res> get cocktailState;
 }
 
 /// @nodoc
@@ -92,6 +118,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? devicesState = null,
     Object? initState = null,
     Object? homeState = null,
+    Object? ingredientState = null,
+    Object? cocktailsState = null,
+    Object? cocktailState = null,
   }) {
     return _then(_value.copyWith(
       devicesState: null == devicesState
@@ -106,6 +135,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.homeState
           : homeState // ignore: cast_nullable_to_non_nullable
               as HomeState,
+      ingredientState: null == ingredientState
+          ? _value.ingredientState
+          : ingredientState // ignore: cast_nullable_to_non_nullable
+              as IngredientState,
+      cocktailsState: null == cocktailsState
+          ? _value.cocktailsState
+          : cocktailsState // ignore: cast_nullable_to_non_nullable
+              as CocktailsState,
+      cocktailState: null == cocktailState
+          ? _value.cocktailState
+          : cocktailState // ignore: cast_nullable_to_non_nullable
+              as CocktailState,
     ) as $Val);
   }
 
@@ -132,6 +173,30 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(homeState: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $IngredientStateCopyWith<$Res> get ingredientState {
+    return $IngredientStateCopyWith<$Res>(_value.ingredientState, (value) {
+      return _then(_value.copyWith(ingredientState: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CocktailsStateCopyWith<$Res> get cocktailsState {
+    return $CocktailsStateCopyWith<$Res>(_value.cocktailsState, (value) {
+      return _then(_value.copyWith(cocktailsState: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CocktailStateCopyWith<$Res> get cocktailState {
+    return $CocktailStateCopyWith<$Res>(_value.cocktailState, (value) {
+      return _then(_value.copyWith(cocktailState: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -143,7 +208,12 @@ abstract class _$$InitialAppStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DevicesState devicesState, InitState initState, HomeState homeState});
+      {DevicesState devicesState,
+      InitState initState,
+      HomeState homeState,
+      IngredientState ingredientState,
+      CocktailsState cocktailsState,
+      CocktailState cocktailState});
 
   @override
   $DevicesStateCopyWith<$Res> get devicesState;
@@ -151,6 +221,12 @@ abstract class _$$InitialAppStateImplCopyWith<$Res>
   $InitStateCopyWith<$Res> get initState;
   @override
   $HomeStateCopyWith<$Res> get homeState;
+  @override
+  $IngredientStateCopyWith<$Res> get ingredientState;
+  @override
+  $CocktailsStateCopyWith<$Res> get cocktailsState;
+  @override
+  $CocktailStateCopyWith<$Res> get cocktailState;
 }
 
 /// @nodoc
@@ -167,6 +243,9 @@ class __$$InitialAppStateImplCopyWithImpl<$Res>
     Object? devicesState = null,
     Object? initState = null,
     Object? homeState = null,
+    Object? ingredientState = null,
+    Object? cocktailsState = null,
+    Object? cocktailState = null,
   }) {
     return _then(_$InitialAppStateImpl(
       devicesState: null == devicesState
@@ -181,6 +260,18 @@ class __$$InitialAppStateImplCopyWithImpl<$Res>
           ? _value.homeState
           : homeState // ignore: cast_nullable_to_non_nullable
               as HomeState,
+      ingredientState: null == ingredientState
+          ? _value.ingredientState
+          : ingredientState // ignore: cast_nullable_to_non_nullable
+              as IngredientState,
+      cocktailsState: null == cocktailsState
+          ? _value.cocktailsState
+          : cocktailsState // ignore: cast_nullable_to_non_nullable
+              as CocktailsState,
+      cocktailState: null == cocktailState
+          ? _value.cocktailState
+          : cocktailState // ignore: cast_nullable_to_non_nullable
+              as CocktailState,
     ));
   }
 }
@@ -191,7 +282,10 @@ class _$InitialAppStateImpl extends _InitialAppState {
   const _$InitialAppStateImpl(
       {this.devicesState = const DevicesState.initial(),
       this.initState = const InitState.initial(),
-      this.homeState = const HomeState.initial()})
+      this.homeState = const HomeState.initial(),
+      this.ingredientState = const IngredientState.initial(),
+      this.cocktailsState = const CocktailsState.initial(),
+      this.cocktailState = const CocktailState.initial()})
       : super._();
 
   @override
@@ -203,10 +297,19 @@ class _$InitialAppStateImpl extends _InitialAppState {
   @override
   @JsonKey()
   final HomeState homeState;
+  @override
+  @JsonKey()
+  final IngredientState ingredientState;
+  @override
+  @JsonKey()
+  final CocktailsState cocktailsState;
+  @override
+  @JsonKey()
+  final CocktailState cocktailState;
 
   @override
   String toString() {
-    return 'AppState.initial(devicesState: $devicesState, initState: $initState, homeState: $homeState)';
+    return 'AppState.initial(devicesState: $devicesState, initState: $initState, homeState: $homeState, ingredientState: $ingredientState, cocktailsState: $cocktailsState, cocktailState: $cocktailState)';
   }
 
   @override
@@ -219,12 +322,18 @@ class _$InitialAppStateImpl extends _InitialAppState {
             (identical(other.initState, initState) ||
                 other.initState == initState) &&
             (identical(other.homeState, homeState) ||
-                other.homeState == homeState));
+                other.homeState == homeState) &&
+            (identical(other.ingredientState, ingredientState) ||
+                other.ingredientState == ingredientState) &&
+            (identical(other.cocktailsState, cocktailsState) ||
+                other.cocktailsState == cocktailsState) &&
+            (identical(other.cocktailState, cocktailState) ||
+                other.cocktailState == cocktailState));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, devicesState, initState, homeState);
+  int get hashCode => Object.hash(runtimeType, devicesState, initState,
+      homeState, ingredientState, cocktailsState, cocktailState);
 
   @JsonKey(ignore: true)
   @override
@@ -237,32 +346,50 @@ class _$InitialAppStateImpl extends _InitialAppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            DevicesState devicesState, InitState initState, HomeState homeState)
+            DevicesState devicesState,
+            InitState initState,
+            HomeState homeState,
+            IngredientState ingredientState,
+            CocktailsState cocktailsState,
+            CocktailState cocktailState)
         initial,
   }) {
-    return initial(devicesState, initState, homeState);
+    return initial(devicesState, initState, homeState, ingredientState,
+        cocktailsState, cocktailState);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DevicesState devicesState, InitState initState,
-            HomeState homeState)?
+    TResult? Function(
+            DevicesState devicesState,
+            InitState initState,
+            HomeState homeState,
+            IngredientState ingredientState,
+            CocktailsState cocktailsState,
+            CocktailState cocktailState)?
         initial,
   }) {
-    return initial?.call(devicesState, initState, homeState);
+    return initial?.call(devicesState, initState, homeState, ingredientState,
+        cocktailsState, cocktailState);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DevicesState devicesState, InitState initState,
-            HomeState homeState)?
+    TResult Function(
+            DevicesState devicesState,
+            InitState initState,
+            HomeState homeState,
+            IngredientState ingredientState,
+            CocktailsState cocktailsState,
+            CocktailState cocktailState)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(devicesState, initState, homeState);
+      return initial(devicesState, initState, homeState, ingredientState,
+          cocktailsState, cocktailState);
     }
     return orElse();
   }
@@ -300,7 +427,10 @@ abstract class _InitialAppState extends AppState {
   const factory _InitialAppState(
       {final DevicesState devicesState,
       final InitState initState,
-      final HomeState homeState}) = _$InitialAppStateImpl;
+      final HomeState homeState,
+      final IngredientState ingredientState,
+      final CocktailsState cocktailsState,
+      final CocktailState cocktailState}) = _$InitialAppStateImpl;
   const _InitialAppState._() : super._();
 
   @override
@@ -309,6 +439,12 @@ abstract class _InitialAppState extends AppState {
   InitState get initState;
   @override
   HomeState get homeState;
+  @override
+  IngredientState get ingredientState;
+  @override
+  CocktailsState get cocktailsState;
+  @override
+  CocktailState get cocktailState;
   @override
   @JsonKey(ignore: true)
   _$$InitialAppStateImplCopyWith<_$InitialAppStateImpl> get copyWith =>

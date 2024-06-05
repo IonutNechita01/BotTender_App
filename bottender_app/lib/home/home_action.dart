@@ -9,6 +9,7 @@ class ChangeHomePageAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final currentIndexPage = state.homeState.currentIndexPage;
-    return state.copyWith.homeState.call(lastIndexPage: currentIndexPage, currentIndexPage: page);
+    return state.copyWith.homeState
+        .call(lastIndexPage: currentIndexPage, currentIndexPage: page);
   }
 }

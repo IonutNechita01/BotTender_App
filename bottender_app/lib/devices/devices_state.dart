@@ -1,3 +1,4 @@
+import 'package:android_flutter_wifi/android_flutter_wifi.dart';
 import 'package:bottender_app/models/device_model/device_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +10,9 @@ class DevicesState with _$DevicesState {
 
   const factory DevicesState.initial({
     DeviceModel? connectedDevice,
-    @Default({}) Set<DeviceModel> devices,
+    @Default({})
+    Set<DeviceModel> devices,
     @Default(false) bool isSearching,
-  }) = _DevicesState;
+    @Default([]) List<WifiNetwork> disponibleWifis,
+  }) = _InitialDevicesState;
 }

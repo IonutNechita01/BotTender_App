@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-double getTextHeight({String? text,required TextStyle style}) {
-  final TextPainter textPainter = TextPainter(
+double getTextHeight({required TextStyle style, String? text}) {
+  final textPainter = TextPainter(
     text: TextSpan(
-      text: text ?? "Text",
+      text: text ?? 'Text',
       style: style,
     ),
     textDirection: TextDirection.ltr,

@@ -4,43 +4,45 @@ import 'package:bottender_app/utils/standards/standard_loading.dart';
 import 'package:bottender_app/utils/standards/standard_spacing.dart';
 import 'package:bottender_app/utils/style/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class StandardEmptyScreen extends StatelessWidget {
   final String? url;
   final String? message;
-  final Function()? onRefresh;
+  final void Function()? onRefresh;
   final bool? isLoading;
 
   const StandardEmptyScreen(
-      {this.url, this.message, this.onRefresh, this.isLoading, super.key});
+      {this.url, this.message, this.onRefresh, this.isLoading, super.key,});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
+        StandardSpacing.regular(),
+        Flexible(
           flex: 3,
-          child: StandardImage(url: url ?? "assets/svg/empty_page.svg"),
+          child: StandardImage(url: url ?? 'assets/svg/empty_page.svg', fit: BoxFit.contain,),
         ),
-        StandardSpacing.vertical.regular,
+        StandardSpacing.regular(),
         Expanded(
           child: Column(
             children: [
               Text(
-                message ?? "",
+                message ?? '',
                 style: StandardTextStyles().callout.regular,
               ),
-              StandardSpacing.vertical.regular,
+              StandardSpacing.regular(),
               if (onRefresh != null && (isLoading == null || !isLoading!))
                 StandardIconButton(
-                    icon: FontAwesomeIcons.arrowRotateLeft, onTap: onRefresh!),
+                    icon: FontAwesomeIcons.arrowRotateLeft, onTap: onRefresh,),
               if (isLoading != null && isLoading!)
                 const StandardLoading(),
             ],
           ),
         ),
-        StandardSpacing.vertical.regular
+        StandardSpacing.regular(),
       ],
     );
   }

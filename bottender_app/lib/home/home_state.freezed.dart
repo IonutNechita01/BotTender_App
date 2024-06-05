@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
-  return _InitialHomeState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$HomeState {
   int get currentIndexPage => throw _privateConstructorUsedError;
@@ -54,7 +50,7 @@ mixin _$HomeState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -136,14 +132,11 @@ class __$$InitialHomeStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$InitialHomeStateImpl extends _InitialHomeState {
   const _$InitialHomeStateImpl(
       {this.currentIndexPage = 0, this.lastIndexPage = 0})
       : super._();
-
-  factory _$InitialHomeStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InitialHomeStateImplFromJson(json);
 
   @override
   @JsonKey()
@@ -168,7 +161,6 @@ class _$InitialHomeStateImpl extends _InitialHomeState {
                 other.lastIndexPage == lastIndexPage));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, currentIndexPage, lastIndexPage);
 
@@ -234,13 +226,6 @@ class _$InitialHomeStateImpl extends _InitialHomeState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InitialHomeStateImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _InitialHomeState extends HomeState {
@@ -248,9 +233,6 @@ abstract class _InitialHomeState extends HomeState {
       {final int currentIndexPage,
       final int lastIndexPage}) = _$InitialHomeStateImpl;
   const _InitialHomeState._() : super._();
-
-  factory _InitialHomeState.fromJson(Map<String, dynamic> json) =
-      _$InitialHomeStateImpl.fromJson;
 
   @override
   int get currentIndexPage;

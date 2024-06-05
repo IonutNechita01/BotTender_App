@@ -1,41 +1,57 @@
-// ignore_for_file: library_private_types_in_public_api
-
+import 'package:bottender_app/utils/style/dimensions.dart';
 import 'package:flutter/material.dart';
 
-enum Orentation { vertical, horizontal }
+abstract class StandardSpacing {
+  static Widget vertical(double size) {
+    return _StandardSpacing(size: size, isColumn: true, isRow: false);
+  }
 
-class StandardSpacing {
-  static _StandardSpacingModel get vertical =>
-      _StandardSpacingModel(orientation: Orentation.vertical);
-  static _StandardSpacingModel get horizontal =>
-      _StandardSpacingModel(orientation: Orentation.horizontal);
-  static _StandardSpacingSizeModel get size => _StandardSpacingSizeModel();
+  static Widget horizontal(double size) {
+    return _StandardSpacing(size: size, isRow: true, isColumn: false);
+  }
+
+  static Widget small() {
+    return _StandardSpacing.small();
+  }
+
+  static Widget medium() {
+    return _StandardSpacing.medium();
+  }
+
+  static Widget regular() {
+    return _StandardSpacing.regular();
+  }
 }
 
-class _StandardSpacingSizeModel {
-  final double small = 4;
-  final double medium = 8;
-  final double regular = 16;
-}
+class _StandardSpacing extends StatelessWidget {
+  final double size;
+  final bool? isRow;
+  final bool? isColumn;
+  const _StandardSpacing({required this.size, this.isRow, this.isColumn});
 
-class _StandardSpacingModel {
-  final Orentation orientation;
-  final _StandardSpacingSizeModel _size = _StandardSpacingSizeModel();
+  factory _StandardSpacing.small() {
+    return const _StandardSpacing(size: StandardSpacingSize.small);
+  }
+  factory _StandardSpacing.medium() {
+    return const _StandardSpacing(size: StandardSpacingSize.medium);
+  }
 
-  _StandardSpacingModel({
-    required this.orientation,
-  });
+  factory _StandardSpacing.regular() {
+    return const _StandardSpacing(size: StandardSpacingSize.regular);
+  }
 
-  Widget get small => _getSpacingWidget(size: _size.small);
+  @override
+  Widget build(BuildContext context) {
+    final isRow =
+        this.isRow ?? context.findAncestorWidgetOfExactType<Row>() != null;
 
-  Widget get medium => _getSpacingWidget(size: _size.medium);
+    final isColumn = this.isColumn ??
+        (context.findAncestorWidgetOfExactType<Column>() != null ||
+            context.findAncestorWidgetOfExactType<ListView>() != null);
 
-  Widget get regular => _getSpacingWidget(size: _size.regular);
-
-  Widget _getSpacingWidget({required double size}) {
     return SizedBox(
-      height: Orentation.vertical == orientation ? size : 0,
-      width: Orentation.horizontal == orientation ? size : 0,
+      width: isRow ? size : 0,
+      height: isColumn ? size : 0,
     );
   }
 }

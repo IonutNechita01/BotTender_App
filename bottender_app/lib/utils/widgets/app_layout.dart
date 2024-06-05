@@ -3,6 +3,7 @@ import 'package:bottender_app/utils/standards/standard_icon.dart';
 import 'package:bottender_app/utils/standards/standard_padding.dart';
 import 'package:bottender_app/utils/standards/standard_spacing.dart';
 import 'package:bottender_app/utils/style/color.dart';
+import 'package:bottender_app/utils/style/dimensions.dart';
 import 'package:bottender_app/utils/style/fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,9 @@ class AppLayout extends StatelessWidget {
   final int selectedIndex;
   final IconData? middleButtonIcon;
   final void Function()? middleButtonOnTap;
+  final bool resizeToAvoidBottomInset;
+  final String? midleButtonText;
+  final bool safeArea;
 
   const AppLayout({
     required this.child,
@@ -33,130 +37,147 @@ class AppLayout extends StatelessWidget {
     this.middleButtonIcon,
     this.selectedIndex = 0,
     this.middleButtonOnTap,
+    this.resizeToAvoidBottomInset = false,
+    this.midleButtonText,
+    this.safeArea = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(0.5, 0.5),
-              colors: [
-                AppThemeColor.primary.withOpacity(0.4),
-                AppThemeColor.primary.withOpacity(0.3),
-                AppThemeColor.primary.withOpacity(0.05),
-              ],
-            ),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            stops: [0.0, 0.7],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppThemeColor.appLayoutBackground,
+              AppThemeColor.positive,
+            ],
           ),
-          child: Column(
-            children: [
-              Expanded(
-                child: StandardPadding.only(
-                  bottom: StandardSpacing.size.regular,
-                  top: StandardSpacing.size.regular * 2,
-                  left: StandardSpacing.size.medium,
-                  right: StandardSpacing.size.medium,
-                  child: Column(
-                    children: [
-                      Visibility(
-                        visible: title != null || actions != null,
-                        child: Column(
-                          children: [
-                            StandardSpacing.vertical.regular,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  title ?? '',
-                                  style: StandardTextStyles().title.medium,
-                                ),
-                                if (actions != null) ...actions!,
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      StandardSpacing.vertical.medium,
-                      Expanded(child: child),
-                      StandardSpacing.vertical.medium,
-                      Row(
-                        children: [
-                          if (bottomButtonLabel != null)
-                            ElevatedButton(
-                              onPressed: bottomButtonFunction,
-                              child: Text(bottomButtonLabel!),
-                            ),
-                          if (secondBottomButtonLabel != null)
-                            ElevatedButton(
-                              onPressed: secondBottomButtonFunction,
-                              child: Text(secondBottomButtonLabel!),
-                            ),
-                        ],
-                      ),
-                      if (bottomButtonLabel != null ||
-                          secondBottomButtonLabel != null)
-                        StandardSpacing.vertical.medium,
-                    ],
-                  ),
-                ),
-              ),
-              if (bottomActions != null)
-                Stack(
-                  clipBehavior: Clip.none,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: StandardPadding.only(
+                bottom: StandardSpacingSize.medium,
+                top: safeArea
+                    ? StandardSpacingSize.regular * 2
+                    : StandardSpacingSize.medium,
+                left: StandardSpacingSize.regular,
+                right: StandardSpacingSize.regular,
+                child: Column(
                   children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: StandardSpacing.size.medium,
-                      ),
-                      color: Colors.white,
-                      child: Row(
+                    Visibility(
+                      visible: title != null || actions != null,
+                      child: Column(
                         children: [
-                          for (final action in bottomActions!
-                              .sublist(0, bottomActions!.length ~/ 2))
-                            StandardBottomButton(
-                                model: action.copyWith(
-                                    isSelected: selectedIndex == action.index)),
-                          if (middleButtonIcon != null)
-                            const SizedBox(width: 80),
-                          for (final action in bottomActions!
-                              .sublist(bottomActions!.length ~/ 2))
-                            StandardBottomButton(
-                                model: action.copyWith(
-                                    isSelected: selectedIndex == action.index)),
+                          StandardSpacing.regular(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                title ?? '',
+                                style: StandardTextStyles().title.medium,
+                              ),
+                              if (actions != null) ...actions!,
+                            ],
+                          ),
                         ],
                       ),
                     ),
-                    if (middleButtonIcon != null)
-                      Positioned(
-                        left: MediaQuery.of(context).size.width ~/ 2 - 30,
-                        bottom: 2,
-                        child: Column(
-                          children: [
-                            InkWell(
-                              onTap: middleButtonOnTap,
-                              child: CircleAvatar(
-                                backgroundColor: AppThemeColor.primary,
-                                radius: 30,
-                                child: StandardIcon(
-                                  icon: middleButtonIcon!,
-                                  color: AppThemeColor.greyShadeNegative,
-                                ),
-                              ),
+                    StandardSpacing.medium(),
+                    Expanded(child: child),
+                    StandardSpacing.medium(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        if (secondBottomButtonLabel != null)
+                          ElevatedButton(
+                            onPressed: secondBottomButtonFunction,
+                            child: Text(
+                              secondBottomButtonLabel!,
+                              style: StandardTextStyles().callout.bold,
                             ),
-                            Text(
-                              'Explore',
-                              style: StandardTextStyles().callout.regular,
+                          ),
+                        if (bottomButtonLabel != null)
+                          ElevatedButton(
+                            onPressed: bottomButtonFunction,
+                            child: Text(
+                              bottomButtonLabel!,
+                              style: StandardTextStyles().callout.bold,
                             ),
-                          ],
-                        ),
-                      )
+                          ),
+                      ],
+                    ),
+                    if (bottomButtonLabel != null ||
+                        secondBottomButtonLabel != null)
+                      StandardSpacing.medium(),
                   ],
                 ),
-            ],
-          )),
+              ),
+            ),
+            if (bottomActions != null)
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: StandardSpacingSize.medium,
+                    ),
+                    color: AppThemeColor.cardBackground,
+                    child: Row(
+                      children: [
+                        for (final action in bottomActions!
+                            .sublist(0, bottomActions!.length ~/ 2))
+                          StandardBottomButton(
+                            model: action.copyWith(
+                              isSelected: selectedIndex == action.index,
+                            ),
+                          ),
+                        if (middleButtonIcon != null) const SizedBox(width: 80),
+                        for (final action in bottomActions!
+                            .sublist(bottomActions!.length ~/ 2))
+                          StandardBottomButton(
+                            model: action.copyWith(
+                              isSelected: selectedIndex == action.index,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  if (middleButtonIcon != null)
+                    Positioned(
+                      left: MediaQuery.of(context).size.width ~/ 2 - 30,
+                      bottom: 2,
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: middleButtonOnTap,
+                            child: CircleAvatar(
+                              backgroundColor: AppThemeColor.primary,
+                              radius: 30,
+                              child: StandardIcon(
+                                icon: middleButtonIcon!,
+                                color: AppThemeColor.greyShadeNegative,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            midleButtonText ?? '',
+                            style: StandardTextStyles().callout.regular,
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

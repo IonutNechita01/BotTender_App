@@ -1,4 +1,5 @@
 import 'package:bottender_app/utils/standards/standard_icon.dart';
+import 'package:bottender_app/utils/standards/standard_padding.dart';
 import 'package:bottender_app/utils/style/color.dart';
 import 'package:bottender_app/utils/style/dimensions.dart';
 import 'package:bottender_app/utils/style/fonts.dart';
@@ -47,9 +48,13 @@ class StandardTextButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       splashColor: Colors.transparent,
-      child: Text(
-        text,
-        style: StandardTextStyles().title.regular,
+      child: StandardPadding.symmetric(
+        vertical: StandardSpacingSize.regular,
+        horizontal: StandardSpacingSize.small,
+        child: Text(
+          text,
+          style: StandardTextStyles().callout.bold,
+        ),
       ),
     );
   }
@@ -58,7 +63,7 @@ class StandardTextButton extends StatelessWidget {
 class StandardBottomButtonModel {
   final String label;
   final IconData icon;
-  final Function(int) onTap;
+  final void Function(int) onTap;
   final int index;
   final bool isSelected;
 
@@ -73,7 +78,7 @@ class StandardBottomButtonModel {
   StandardBottomButtonModel copyWith({
     String? label,
     IconData? icon,
-    Function(int)? onTap,
+    void Function(int)? onTap,
     int? index,
     bool? isSelected,
   }) {
@@ -99,12 +104,12 @@ class StandardBottomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: (() => model.onTap(model.index)),
+        onTap: () => model.onTap(model.index),
         child: Column(
           children: [
             StandardIcon(
               icon: model.icon,
-              size: StandardIconSize.medium,
+              size: StandardIconSize().normalIcon,
               color: model.isSelected
                   ? AppThemeColor.primary
                   : AppThemeColor.greyShadeNegative,
@@ -119,6 +124,43 @@ class StandardBottomButton extends StatelessWidget {
                   : StandardTextStyles().callout.light,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class StandardSelectableButton extends StatelessWidget {
+  final String label;
+  final bool isSelected;
+  final VoidCallback? onTap;
+
+  const StandardSelectableButton({
+    required this.label,
+    required this.isSelected,
+    this.onTap,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: isSelected ? AppThemeColor.primary : AppThemeColor.greyShade,
+          borderRadius: StandardBorder().borderRadius,
+        ),
+        child: StandardPadding.all(
+          padding: StandardSpacingSize.medium,
+          child: Text(
+            label,
+            style: isSelected
+                ? StandardTextStyles().callout.bold.copyWith(
+                      color: AppThemeColor.greyShadePositive,
+                    )
+                : StandardTextStyles().callout.bold,
+          ),
         ),
       ),
     );

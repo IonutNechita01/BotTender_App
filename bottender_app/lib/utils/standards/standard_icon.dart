@@ -18,7 +18,7 @@ class StandardIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       icon,
-      size: size ?? StandardIconSize.medium,
+      size: size ?? StandardIconSize().normalIcon,
       color: color ?? AppThemeColor.primary,
     );
   }

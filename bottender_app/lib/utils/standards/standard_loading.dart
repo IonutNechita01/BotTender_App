@@ -20,7 +20,7 @@ class StandardLoading extends StatelessWidget {
             text ?? 'Loading...',
             style: StandardTextStyles().callout.regular,
           ),
-          StandardSpacing.vertical.medium,
+          StandardSpacing.medium(),
           const SpinKitFadingCircle(
             color: AppThemeColor.primary,
           ),

@@ -19,41 +19,45 @@ mixin _$DevicesState {
   DeviceModel? get connectedDevice => throw _privateConstructorUsedError;
   Set<DeviceModel> get devices => throw _privateConstructorUsedError;
   bool get isSearching => throw _privateConstructorUsedError;
+  List<WifiNetwork> get disponibleWifis => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DeviceModel? connectedDevice,
-            Set<DeviceModel> devices, bool isSearching)
+    required TResult Function(
+            DeviceModel? connectedDevice,
+            Set<DeviceModel> devices,
+            bool isSearching,
+            List<WifiNetwork> disponibleWifis)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DeviceModel? connectedDevice, Set<DeviceModel> devices,
-            bool isSearching)?
+            bool isSearching, List<WifiNetwork> disponibleWifis)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DeviceModel? connectedDevice, Set<DeviceModel> devices,
-            bool isSearching)?
+            bool isSearching, List<WifiNetwork> disponibleWifis)?
         initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DevicesState value) initial,
+    required TResult Function(_InitialDevicesState value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DevicesState value)? initial,
+    TResult? Function(_InitialDevicesState value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DevicesState value)? initial,
+    TResult Function(_InitialDevicesState value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,7 +76,8 @@ abstract class $DevicesStateCopyWith<$Res> {
   $Res call(
       {DeviceModel? connectedDevice,
       Set<DeviceModel> devices,
-      bool isSearching});
+      bool isSearching,
+      List<WifiNetwork> disponibleWifis});
 }
 
 /// @nodoc
@@ -91,6 +96,7 @@ class _$DevicesStateCopyWithImpl<$Res, $Val extends DevicesState>
     Object? connectedDevice = freezed,
     Object? devices = null,
     Object? isSearching = null,
+    Object? disponibleWifis = null,
   }) {
     return _then(_value.copyWith(
       connectedDevice: freezed == connectedDevice
@@ -105,30 +111,35 @@ class _$DevicesStateCopyWithImpl<$Res, $Val extends DevicesState>
           ? _value.isSearching
           : isSearching // ignore: cast_nullable_to_non_nullable
               as bool,
+      disponibleWifis: null == disponibleWifis
+          ? _value.disponibleWifis
+          : disponibleWifis // ignore: cast_nullable_to_non_nullable
+              as List<WifiNetwork>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$DevicesStateImplCopyWith<$Res>
+abstract class _$$InitialDevicesStateImplCopyWith<$Res>
     implements $DevicesStateCopyWith<$Res> {
-  factory _$$DevicesStateImplCopyWith(
-          _$DevicesStateImpl value, $Res Function(_$DevicesStateImpl) then) =
-      __$$DevicesStateImplCopyWithImpl<$Res>;
+  factory _$$InitialDevicesStateImplCopyWith(_$InitialDevicesStateImpl value,
+          $Res Function(_$InitialDevicesStateImpl) then) =
+      __$$InitialDevicesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {DeviceModel? connectedDevice,
       Set<DeviceModel> devices,
-      bool isSearching});
+      bool isSearching,
+      List<WifiNetwork> disponibleWifis});
 }
 
 /// @nodoc
-class __$$DevicesStateImplCopyWithImpl<$Res>
-    extends _$DevicesStateCopyWithImpl<$Res, _$DevicesStateImpl>
-    implements _$$DevicesStateImplCopyWith<$Res> {
-  __$$DevicesStateImplCopyWithImpl(
-      _$DevicesStateImpl _value, $Res Function(_$DevicesStateImpl) _then)
+class __$$InitialDevicesStateImplCopyWithImpl<$Res>
+    extends _$DevicesStateCopyWithImpl<$Res, _$InitialDevicesStateImpl>
+    implements _$$InitialDevicesStateImplCopyWith<$Res> {
+  __$$InitialDevicesStateImplCopyWithImpl(_$InitialDevicesStateImpl _value,
+      $Res Function(_$InitialDevicesStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,8 +148,9 @@ class __$$DevicesStateImplCopyWithImpl<$Res>
     Object? connectedDevice = freezed,
     Object? devices = null,
     Object? isSearching = null,
+    Object? disponibleWifis = null,
   }) {
-    return _then(_$DevicesStateImpl(
+    return _then(_$InitialDevicesStateImpl(
       connectedDevice: freezed == connectedDevice
           ? _value.connectedDevice
           : connectedDevice // ignore: cast_nullable_to_non_nullable
@@ -151,18 +163,24 @@ class __$$DevicesStateImplCopyWithImpl<$Res>
           ? _value.isSearching
           : isSearching // ignore: cast_nullable_to_non_nullable
               as bool,
+      disponibleWifis: null == disponibleWifis
+          ? _value._disponibleWifis
+          : disponibleWifis // ignore: cast_nullable_to_non_nullable
+              as List<WifiNetwork>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DevicesStateImpl extends _DevicesState {
-  const _$DevicesStateImpl(
+class _$InitialDevicesStateImpl extends _InitialDevicesState {
+  const _$InitialDevicesStateImpl(
       {this.connectedDevice,
       final Set<DeviceModel> devices = const {},
-      this.isSearching = false})
+      this.isSearching = false,
+      final List<WifiNetwork> disponibleWifis = const []})
       : _devices = devices,
+        _disponibleWifis = disponibleWifis,
         super._();
 
   @override
@@ -179,64 +197,83 @@ class _$DevicesStateImpl extends _DevicesState {
   @override
   @JsonKey()
   final bool isSearching;
+  final List<WifiNetwork> _disponibleWifis;
+  @override
+  @JsonKey()
+  List<WifiNetwork> get disponibleWifis {
+    if (_disponibleWifis is EqualUnmodifiableListView) return _disponibleWifis;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_disponibleWifis);
+  }
 
   @override
   String toString() {
-    return 'DevicesState.initial(connectedDevice: $connectedDevice, devices: $devices, isSearching: $isSearching)';
+    return 'DevicesState.initial(connectedDevice: $connectedDevice, devices: $devices, isSearching: $isSearching, disponibleWifis: $disponibleWifis)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DevicesStateImpl &&
+            other is _$InitialDevicesStateImpl &&
             (identical(other.connectedDevice, connectedDevice) ||
                 other.connectedDevice == connectedDevice) &&
             const DeepCollectionEquality().equals(other._devices, _devices) &&
             (identical(other.isSearching, isSearching) ||
-                other.isSearching == isSearching));
+                other.isSearching == isSearching) &&
+            const DeepCollectionEquality()
+                .equals(other._disponibleWifis, _disponibleWifis));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, connectedDevice,
-      const DeepCollectionEquality().hash(_devices), isSearching);
+  int get hashCode => Object.hash(
+      runtimeType,
+      connectedDevice,
+      const DeepCollectionEquality().hash(_devices),
+      isSearching,
+      const DeepCollectionEquality().hash(_disponibleWifis));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DevicesStateImplCopyWith<_$DevicesStateImpl> get copyWith =>
-      __$$DevicesStateImplCopyWithImpl<_$DevicesStateImpl>(this, _$identity);
+  _$$InitialDevicesStateImplCopyWith<_$InitialDevicesStateImpl> get copyWith =>
+      __$$InitialDevicesStateImplCopyWithImpl<_$InitialDevicesStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DeviceModel? connectedDevice,
-            Set<DeviceModel> devices, bool isSearching)
+    required TResult Function(
+            DeviceModel? connectedDevice,
+            Set<DeviceModel> devices,
+            bool isSearching,
+            List<WifiNetwork> disponibleWifis)
         initial,
   }) {
-    return initial(connectedDevice, devices, isSearching);
+    return initial(connectedDevice, devices, isSearching, disponibleWifis);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DeviceModel? connectedDevice, Set<DeviceModel> devices,
-            bool isSearching)?
+            bool isSearching, List<WifiNetwork> disponibleWifis)?
         initial,
   }) {
-    return initial?.call(connectedDevice, devices, isSearching);
+    return initial?.call(
+        connectedDevice, devices, isSearching, disponibleWifis);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DeviceModel? connectedDevice, Set<DeviceModel> devices,
-            bool isSearching)?
+            bool isSearching, List<WifiNetwork> disponibleWifis)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(connectedDevice, devices, isSearching);
+      return initial(connectedDevice, devices, isSearching, disponibleWifis);
     }
     return orElse();
   }
@@ -244,7 +281,7 @@ class _$DevicesStateImpl extends _DevicesState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DevicesState value) initial,
+    required TResult Function(_InitialDevicesState value) initial,
   }) {
     return initial(this);
   }
@@ -252,7 +289,7 @@ class _$DevicesStateImpl extends _DevicesState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DevicesState value)? initial,
+    TResult? Function(_InitialDevicesState value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -260,7 +297,7 @@ class _$DevicesStateImpl extends _DevicesState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DevicesState value)? initial,
+    TResult Function(_InitialDevicesState value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -270,12 +307,13 @@ class _$DevicesStateImpl extends _DevicesState {
   }
 }
 
-abstract class _DevicesState extends DevicesState {
-  const factory _DevicesState(
+abstract class _InitialDevicesState extends DevicesState {
+  const factory _InitialDevicesState(
       {final DeviceModel? connectedDevice,
       final Set<DeviceModel> devices,
-      final bool isSearching}) = _$DevicesStateImpl;
-  const _DevicesState._() : super._();
+      final bool isSearching,
+      final List<WifiNetwork> disponibleWifis}) = _$InitialDevicesStateImpl;
+  const _InitialDevicesState._() : super._();
 
   @override
   DeviceModel? get connectedDevice;
@@ -284,7 +322,9 @@ abstract class _DevicesState extends DevicesState {
   @override
   bool get isSearching;
   @override
+  List<WifiNetwork> get disponibleWifis;
+  @override
   @JsonKey(ignore: true)
-  _$$DevicesStateImplCopyWith<_$DevicesStateImpl> get copyWith =>
+  _$$InitialDevicesStateImplCopyWith<_$InitialDevicesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

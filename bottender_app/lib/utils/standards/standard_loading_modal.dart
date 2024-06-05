@@ -4,19 +4,19 @@ import 'package:bottender_app/utils/standards/standard_loading.dart';
 import 'package:bottender_app/utils/style/color.dart';
 import 'package:flutter/material.dart';
 
-class StandardLoadingModal {
+abstract class StandardLoadingModal {
   static late Future<void>? _dialog;
 
   static void showStandardLoadingModal(
-      {required BuildContext context, String? text, bool canPop = false}) {
-    _dialog = showDialog(
-      barrierColor: AppThemeColor.cardBackground.withOpacity(0.4),
+      {required BuildContext context, String? text, bool canPop = false,}) {
+    _dialog = showDialog<dynamic>(
+      barrierColor: AppThemeColor.barrierColor,
       context: context,
       barrierDismissible: canPop,
       builder: (BuildContext context) {
         return const PopScope(
           canPop: false,
-          child: StandardLoading());
+          child: StandardLoading(),);
       },
     ).then((_) => _dialog = null);
   }
